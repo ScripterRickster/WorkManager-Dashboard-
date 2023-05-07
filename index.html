@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkManager Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="theme.js" defer></script>
+
+    <link rel="shortcut icon" href="logo.png" />
+</head>
+<body>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6q13VVP11PMn78SKvu3m1Z?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <button class="themechanger">Change Theme</button>
+
+    <!-- Title Section -->
+    <div class="titlesection">WorkManager Dashboard</div>
+
+    <!-- Div Sections -->
+    <div class="calendar section">
+        <div class="title">Digital Calendar</div>
+        Current Time (24h Format):
+        <div class="currenttime"></div>
+        Current Date:
+        <div class="currentdate"></div>
+    
+    </div>
+    <div class="to-do section">
+        <div class="title">To-Do List</div>
+
+        <div class="todoinputs">
+            <input class="taskname" type="text" placeholder="Task Name">
+            <input class="taskdate" type="date" placeholder="Task Date">
+            <input class="tasktime" type="time" placeholder="Task Time">
+            <button class="addtask">Add Task</button>
+        </div>
+
+        <div class="todoelements"></div>
+        
+    </div>
+    <div class="timer section">
+        <div class="title">Timer and Stopwatch</div>
+        Timer:
+        <div class="timer">
+            <div class="timertext">1:00</div>
+            <button class="starttimer" onclick="starttimer()">Start</button>
+            <button class="stoptimer" onclick="stoptimer()">Stop</button>
+            <button class="addminute" onclick="addminutes(1)">Add 1 Minute</button>
+            <button class="addtenminutes" onclick="addminutes(10)">Add 10 minutes</button>
+            <button class="resettimer" onclick="resettimer()">Reset</button>
+        </div>
+        Stopwatch:
+        <div class="stopwatch">
+            <div class="stopwatchtext">0:00</div>
+            <button class="starttimer" onclick="startstopwatch()">Start</button>
+            <button class="stoptimer" onclick="stopstopwatch()">Stop</button>
+            <button class="resettimer" onclick="resetstopwatch()">Reset</button>
+        </div>
+    </div>
+    
+    <div class="events section">
+        <div class="title">Events</div>
+        
+        <div class="eventsinputs">
+        <input class="eventname" type="text" placeholder="Event Name">
+        <input class="eventdate" type="date" placeholder="Event Date">
+        <input class="eventtime" type="time" placeholder="Event Time">
+        <button class="addevent">Add Event</button>
+        
+        <div class="eventelements"></div>
+    </div>
+
+    
+</body>
+
+
+</html>
