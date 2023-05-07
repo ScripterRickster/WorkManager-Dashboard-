@@ -117,7 +117,6 @@ document.querySelector(".addevent").addEventListener("click",function(){
         const event = document.createElement("div")
         event.setAttribute("class","eventClass")
         event.setAttribute("id","event" + cevents)
-        cevents += 1
         event.style = `
             width: 100%;
             margin: 5px;
@@ -127,9 +126,11 @@ document.querySelector(".addevent").addEventListener("click",function(){
         event.innerText = eventname + "\n" + eventdate + "\n" + eventtime + "\n"
         document.querySelector(".eventelements").appendChild(event)
 
+        var tag = "event" + cevents
+        cevents +=1
 
 
-        events.push([eventname,eventdate,eventtime])
+        events.push([eventname,eventdate,eventtime,tag])
     }
 })
 
@@ -138,21 +139,33 @@ toastinterval = setInterval(function(){
     if (new Date().getSeconds() == 0) {
         var arrlength = events.length
         for(var i =0;i<arrlength;i++){
-            var currevent = events[i]
-            var currname = currevent[0]
-            var currdate = currevent[1]
-            var currtime = currevent[2]
+            const currevent = events[i]
+            const currname = currevent[0]
+            const currdate = currevent[1]
+            const currtime = currevent[2]
+            const currtag = currevent[3]
     
             console.log(currname,currdate,currtime)
             const date2 = new Date();
 
+            var hours = ""
+            var minutes = ""
+
             var timeText = ""
             if(date2.getHours() < 10){
-                timeText = "0" + date2.getHours() + ":" + date2.getMinutes()
+                hours = "0" + date2.getHours()
 
             }else{
-                 timeText = date2.getHours() + ":" + date2.getMinutes()
+                 hours = date2.getHours()
             }
+
+            if(date2.getMinutes() < 10){
+                minutes = "0" + date2.getMinutes()
+            }else{
+                minutes = date2.getMinutes()
+            }
+
+            timeText = hours + ":" + minutes
 
              var dateText = ""
 
@@ -180,6 +193,7 @@ toastinterval = setInterval(function(){
              if( currdate == dateText && currtime ==  timeText && toastout == false){
                 toastout = true
                 const toast = document.createElement("div")
+                toast.classList.add("toastclass")
                 toast.setAttribute("id","ToastNotifs" + toastnum)
                 toastnum += 1
 
@@ -190,7 +204,7 @@ toastinterval = setInterval(function(){
                     z-index: 2;
                     position: fixed;
                     right: -300px;
-                    bottom: 20;
+                    bottom: 10px;
                     color: white;
                     padding: 10px;
                     font-size: 25px;
@@ -216,9 +230,7 @@ toastinterval = setInterval(function(){
                         }, 1000)
                     }, 5000)
 
-                    var curreventname = "event" + (cevents-1)
-                    document.getElementById(curreventname).remove()
-                    events.splice(i, 1)
+                    document.getElementById(currtag).remove()
             
                 }, 300);
                 toastout = false
@@ -275,6 +287,12 @@ function stoptimer() {
 
 function addminutes(n) {
     minutes += n
+    if (minutes < 0) {
+        minutes = 0
+        seconds = 0
+        try {clearInterval(testInterval)} catch {}
+        
+    }
     updatetimertext()
     console.log("Added")
 }
