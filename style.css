@@ -215,3 +215,9 @@ iframe:hover {
 .addtenminutes {
     background-color: rgb(85, 228, 239);
 }
+
+.toastclass {
+    border-radius: 5px;
+    background: radial-gradient(circle, rgba(80,212,233,1) 0%, rgba(59,140,224,1) 50%, rgba(50,38,224,1) 100%);
+    padding: 1rem;
+}
